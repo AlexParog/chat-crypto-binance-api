@@ -1,6 +1,7 @@
 package com.application.chat.data.service;
 
 import com.application.chat.data.entity.Chat;
+import com.application.chat.data.repository.ChatRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,6 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class ChatService {
 
-    private final ChatService chatService;
+    private final ChatRepository chatRepository;
 
 }

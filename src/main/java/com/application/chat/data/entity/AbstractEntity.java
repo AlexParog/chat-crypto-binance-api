@@ -32,4 +32,5 @@ public abstract class AbstractEntity implements Serializable {
     @JsonIgnore
     private LocalDateTime lastModifiedAt;
 
+    //TODO нужно ли добавлять поле archive для метки удаления?
 }

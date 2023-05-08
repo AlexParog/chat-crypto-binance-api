@@ -59,6 +59,7 @@ public class Chat extends AbstractEntity {
      * Количество непрочитанных сообщений пользователя.
      */
     @Label("Непрочитанные сообщения")
+    @NonNull
     @Column(name = ColumnName.CHAT_CN_UNREAD_MESSAGES, nullable = false, columnDefinition = "integer default 0")
     private int unreadMessages;
 
@@ -67,7 +68,6 @@ public class Chat extends AbstractEntity {
      */
     @Label("Пользователь, состоящий в данной чате")
     @ManyToOne(optional = false)
-    @NonNull
     @JoinColumn(name = ColumnName.CHAT_CN_USER_ID, nullable = false)
     private User user;
 
@@ -76,7 +76,6 @@ public class Chat extends AbstractEntity {
      */
     @Label("Бот, состоящий в данной чате")
     @ManyToOne(optional = false)
-    @NonNull
     @JoinColumn(name = ColumnName.CHAT_CN_BOT_ID, nullable = false)
     private Bot bot;
 

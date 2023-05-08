@@ -1,4 +1,7 @@
 package com.application.chat.views;
 
-public class MainLayout {
+import com.vaadin.flow.component.applayout.AppLayout;
+
+public class MainLayout extends AppLayout {
+
 }
