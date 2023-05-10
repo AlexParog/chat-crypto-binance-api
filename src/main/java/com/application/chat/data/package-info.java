@@ -1,1 +1,0 @@
-package com.application.chat.data;

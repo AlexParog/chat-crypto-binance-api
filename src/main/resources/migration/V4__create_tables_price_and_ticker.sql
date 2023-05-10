@@ -1,14 +1,16 @@
+-- Таблица "Тикера"
 CREATE TABLE tickers
 (
     id   SERIAL PRIMARY KEY,
-    name TEXT NOT NULL
+    name VARCHAR(200) NOT NULL
 );
 
 CREATE UNIQUE INDEX name_unique_idx ON tickers (name);
 
+-- Таблица "Цены"
 CREATE TABLE prices
 (
-    ticker_id INTEGER REFERENCES tickers (id),
+    ticker_id BIGINT REFERENCES tickers (id),
     time      TIMESTAMP      NOT NULL,
     value     NUMERIC(10, 7) NOT NULL,
     PRIMARY KEY (ticker_id, time)
