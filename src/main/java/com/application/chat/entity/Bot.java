@@ -47,7 +47,6 @@ public class Bot extends AbstractEntity {
     private List<Command> botCommands;
 
     @Label("Чаты, в которых состоит бот")
-    @NonNull
     @OneToMany(mappedBy = Chat.PropertyName.PN_BOT_CHAT, fetch = FetchType.LAZY)
     private List<Chat> botChats;
 

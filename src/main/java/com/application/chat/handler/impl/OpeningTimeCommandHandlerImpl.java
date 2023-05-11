@@ -1,4 +1,100 @@
 package com.application.chat.handler.impl;
 
-public class OpeningTimeCommandHandlerImpl {
+import com.application.binance.BinanceApiRestClient;
+import com.application.binance.domain.market.Candlestick;
+import com.application.binance.domain.market.CandlestickInterval;
+import com.application.chat.handler.CommandHandler;
+import com.application.chat.utils.BinanceTimeConverter;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+/**
+ * Обработчик команды "/openingTime".
+ */
+@Component
+public class OpeningTimeCommandHandlerImpl implements CommandHandler {
+
+    /**
+     * Команда "/openingTime".
+     */
+    private static final String COMMAND_OPENING_TIME = "/openingTime";
+
+    /**
+     * Количество параметров команды.
+     */
+    public static final int PARAMS_LENGTH = 3;
+
+    /**
+     * Индекс символа в массиве параметров команды.
+     */
+    public static final int PARAM_SYMBOL = 1;
+
+    /**
+     * Индекс времени в массиве параметров команды.
+     */
+    public static final int PARAM_TIME = 2;
+
+    /**
+     * Клиент для взаимодействия с Binance API.
+     */
+    private final BinanceApiRestClient binanceApiRestClient;
+
+    /**
+     * Создает новый экземпляр обработчика команды "/openingTime".
+     *
+     * @param binanceApiRestClient клиент для взаимодействия с Binance API
+     */
+    public OpeningTimeCommandHandlerImpl(BinanceApiRestClient binanceApiRestClient) {
+        this.binanceApiRestClient = binanceApiRestClient;
+    }
+
+    /**
+     * Обрабатывает введенную команду "/openingTime".
+     *
+     * @param command введенная команда
+     * @return результат обработки команды
+     */
+    @Override
+    public String handleCommand(String command) {
+        String[] params = command.split(" ");
+        if (params.length > PARAMS_LENGTH) {
+            return "Неправильный формат команды. Воспользуйтесь: /openingTime <SYMBOL> <TIME>";
+        }
+        String symbol = params[PARAM_SYMBOL].toUpperCase();
+        String time = params[PARAM_TIME];
+        CandlestickInterval interval;
+
+        try {
+            interval = CandlestickInterval.valueOf(time.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            return """
+                    Неверное значение времени. Пожалуйста, выберите один из доступных интервалов:
+                    - час -> 1h
+                    - 8 часов -> 8h
+                    - 12 часов -> 12h
+                    - день -> 1d
+                    - 3 дня -> 3d
+                    - неделя -> 1w
+                    - месяц -> 1M)""";
+        }
+
+        List<Candlestick> candlesticks = binanceApiRestClient.getCandlestickBars(symbol, interval);
+        if (candlesticks == null || candlesticks.isEmpty()) {
+            return "Не найдена цена открытия для данной валютной пары: " + symbol + " при интервале " +
+                    interval.getIntervalId() + ". " + "Перейдите на биржу Binance для уточнения названия валютной пары.";
+
+        }
+        return BinanceTimeConverter.convertTimestampToString(candlesticks.get(0).getOpenTime());
+    }
+
+    /**
+     * Возвращает имя команды "/openingTime".
+     *
+     * @return имя команды "/openingTime"
+     */
+    @Override
+    public String getCommandName() {
+        return COMMAND_OPENING_TIME;
+    }
 }

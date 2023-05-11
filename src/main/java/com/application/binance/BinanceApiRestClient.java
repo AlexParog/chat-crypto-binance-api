@@ -92,7 +92,15 @@ public interface BinanceApiRestClient {
     TickerStatistics get24HrPriceStatistics(String symbol);
 
     /**
-     * Получает последнюю цену для всех символов.
+     * Получает последнюю цену для определенноой валютной пары.
+     *
+     * @param symbol название тикера
+     * @return последняя цена тикера
+     */
+    TickerPrice getTickerPrice(String symbol);
+
+    /**
+     * Получает последнюю цену для всех валютных пар.
      *
      * @return список последних цен для всех символов
      */

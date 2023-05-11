@@ -44,7 +44,12 @@ public enum BotCommandsEnum {
     /**
      * Команд, позволяющая определять время закрытия свечного периода для пары торгов.
      */
-    CLOSING_TIME("/closingTime");
+    CLOSING_TIME("/closingTime"),
+
+    /**
+     * Неизвестная команда.
+     */
+    UNKNOWN_COMMAND("/unknown_command");
 
     /**
      * Значение команды.

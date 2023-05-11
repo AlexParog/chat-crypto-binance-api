@@ -130,6 +130,17 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
     }
 
     /**
+     * Получает последнюю цену по валютной паре.
+     *
+     * @param symbol название валютной пары
+     * @return цена валютной пары
+     */
+    @Override
+    public TickerPrice getTickerPrice(String symbol) {
+        return executeSync(binanceApiService.getTickerPrice(symbol));
+    }
+
+    /**
      * Получает список последних цен по всем валютным парам.
      *
      * @return список последних цен
