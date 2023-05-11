@@ -1,14 +1,12 @@
 package com.application.chat.handler.impl;
 
 import com.application.chat.handler.CommandHandler;
-import org.springframework.stereotype.Component;
 
 /**
  * Обработчик неизвестной команды.
  *
  * @author alexanderbibik
  */
-@Component
 public class UnknownCommandHandlerImpl implements CommandHandler {
     /**
      * Строковое обозначение для неизвестной команды.

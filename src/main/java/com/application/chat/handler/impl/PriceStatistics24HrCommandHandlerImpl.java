@@ -3,12 +3,11 @@ package com.application.chat.handler.impl;
 import com.application.binance.BinanceApiRestClient;
 import com.application.binance.domain.market.TickerStatistics;
 import com.application.chat.handler.CommandHandler;
-import org.springframework.stereotype.Component;
+import com.application.chat.utils.BinanceTimeConverter;
 
 /**
  * Обработчик команды "/priceStatistics24Hr".
  */
-@Component
 public class PriceStatistics24HrCommandHandlerImpl implements CommandHandler {
 
     /**
@@ -58,7 +57,23 @@ public class PriceStatistics24HrCommandHandlerImpl implements CommandHandler {
             return "Не найдена статистика для данной валютной пары: " + symbol + ". " +
                     "Перейдите на биржу Binance для уточнения названия валютной пары.";
         }
-        return tickerStatistics.toString();
+        return "Статистика изменения цены за 24 часа для " + symbol + ":" + "\n" +
+                "Изменение цены за последние 24 часа: " + tickerStatistics.getPriceChange() + "\n" +
+                "Изменение цены в процентах за последние 24 часа: " + tickerStatistics.getPriceChangePercent() + "\n" +
+                "Взвешенная средняя цена: " + tickerStatistics.getWeightedAvgPrice() + "\n" +
+                "Предыдущая цена закрытия: " + tickerStatistics.getPrevClosePrice() + "\n" +
+                "Последняя цена: " + tickerStatistics.getLastPrice() + "\n" +
+                "Цена предложения (bid): " + tickerStatistics.getBidPrice() + "\n" +
+                "Цена спроса (ask): " + tickerStatistics.getAskPrice() + "\n" +
+                "Цена открытия 24 часа назад: " + tickerStatistics.getOpenPrice() + "\n" +
+                "Самая высокая цена за последние 24 часа: " + tickerStatistics.getHighPrice() + "\n" +
+                "Самая низкая цена за последние 24 часа: " + tickerStatistics.getLowPrice() + "\n" +
+                "Общий объем за последние 24 часа: " + tickerStatistics.getVolume() + "\n" +
+                "Время открытия: " + BinanceTimeConverter.convertTimestampToString(tickerStatistics.getOpenTime()) + "\n" +
+                "Время закрытия: " + BinanceTimeConverter.convertTimestampToString(tickerStatistics.getCloseTime()) + "\n" +
+                "Идентификатор первой сделки: " + tickerStatistics.getFirstId() + "\n" +
+                "Идентификатор последней сделки: " + tickerStatistics.getLastId() + "\n" +
+                "Общее количество сделок за последние 24 часа: " + tickerStatistics.getCount();
     }
 
     /**

@@ -1,12 +1,10 @@
 package com.application.chat.handler.impl;
 
 import com.application.chat.handler.CommandHandler;
-import org.springframework.stereotype.Component;
 
 /**
  * Обработчик команды "/help".
  */
-@Component
 public class HelpCommandHandlerImpl implements CommandHandler {
 
     /**
@@ -32,13 +30,13 @@ public class HelpCommandHandlerImpl implements CommandHandler {
                     * определять время открытия свечного периода для пары торгов - команда '/openingTime <SYMBOL> <TIME>';
                     * определять время закрытия свечного периода для пары торгов - команда '/closingTime <SYMBOL> <TIME>';
                     P.S: для команд, где используется параметр <TIME> есть формат времени:
-                    * час -> 1h
-                    * 8 часов -> 8h
-                    * 12 часов -> 12h
-                    * день -> 1d
-                    * 3 дня -> 3d
-                    * неделя -> 1w
-                    * месяц -> 1M""";
+                    * час -> HOURLY
+                    * 8 часов -> EIGHT_HOURLY
+                    * 12 часов -> TWELVE_HOURLY
+                    * день -> DAILY
+                    * 3 дня -> THREE_DAILY
+                    * неделя -> WEEKLY
+                    * месяц -> MONTHLY""";
 
     /**
      * Обрабатывает введенную команду "/help".

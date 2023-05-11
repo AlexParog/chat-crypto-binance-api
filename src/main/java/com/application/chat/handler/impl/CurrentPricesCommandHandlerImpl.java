@@ -3,12 +3,10 @@ package com.application.chat.handler.impl;
 import com.application.binance.BinanceApiRestClient;
 import com.application.binance.domain.market.TickerPrice;
 import com.application.chat.handler.CommandHandler;
-import org.springframework.stereotype.Component;
 
 /**
  * Обработчик команды "/currentPrice".
  */
-@Component
 public class CurrentPricesCommandHandlerImpl implements CommandHandler {
 
     /**
@@ -55,10 +53,10 @@ public class CurrentPricesCommandHandlerImpl implements CommandHandler {
         String symbol = params[PARAM_SYMBOL].toUpperCase();
         TickerPrice tickerPrice = binanceApiRestClient.getTickerPrice(symbol);
         if (tickerPrice == null) {
-            return "Не найдена статистика для данной валютной пары: " + symbol + ". " +
+            return "Не найдена текущая цена для данной валютной пары: " + symbol + ". " +
                     "Перейдите на биржу Binance для уточнения названия тикера.";
         }
-        return tickerPrice.getPrice();
+        return "Текущая цена для " + symbol + ": " + tickerPrice.getPrice();
     }
 
     /**

@@ -1,14 +1,12 @@
 package com.application.chat.handler.impl;
 
 import com.application.chat.handler.CommandHandler;
-import org.springframework.stereotype.Component;
 
 /**
  * Обработчик команды "/start".
  *
  * @author alexanderbibik
  */
-@Component
 public class StartCommandHandlerImpl implements CommandHandler {
 
     /**

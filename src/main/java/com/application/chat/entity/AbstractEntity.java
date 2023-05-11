@@ -12,6 +12,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+/**
+ * Абстрактная сущность, определяющая базовые поля сущности.
+ *
+ * @author alexanderbibik
+ */
 @MappedSuperclass
 @Setter
 @Getter
@@ -31,6 +36,4 @@ public abstract class AbstractEntity implements Serializable {
     @LastModifiedDate
     @JsonIgnore
     private LocalDateTime lastModifiedAt;
-
-    //TODO нужно ли добавлять поле archive для метки удаления?
 }

@@ -166,29 +166,17 @@ public class BotConfiguration {
     }
 
     /**
-     * Создает и настраивает словарь, сопоставляющую имена команд с соответствующими обработчиками команд.
+     * Создает и настраивает процессор команд с заданным ботом и картой обработчиков команд.
      *
-     * @param commandHandlers список обработчиков команд
-     * @return словарь, сопоставляющая имена команд с обработчиками
+     * @param bot экземпляр бота
+     * @return экземпляр процессора команд
      */
     @Bean
-    public Map<String, CommandHandler> commandHandlerMap(List<CommandHandler> commandHandlers) {
+    public CommandProcessor commandProcessor(Bot bot, List<CommandHandler> commandHandlers) {
         Map<String, CommandHandler> commandHandlerMap = new HashMap<>();
         for (CommandHandler handler : commandHandlers) {
             commandHandlerMap.put(handler.getCommandName(), handler);
         }
-        return commandHandlerMap;
-    }
-
-    /**
-     * Создает и настраивает процессор команд с заданным ботом и картой обработчиков команд.
-     *
-     * @param bot               экземпляр бота
-     * @param commandHandlerMap cловарь, сопоставляющая имена команд с обработчиками
-     * @return экземпляр процессора команд
-     */
-    @Bean
-    public CommandProcessor commandProcessor(Bot bot, Map<String, CommandHandler> commandHandlerMap) {
         return new CommandProcessor(bot, commandHandlerMap);
     }
 

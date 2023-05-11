@@ -5,14 +5,12 @@ import com.application.binance.domain.market.Candlestick;
 import com.application.binance.domain.market.CandlestickInterval;
 import com.application.chat.handler.CommandHandler;
 import com.application.chat.utils.BinanceTimeConverter;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * Обработчик команды "/openingTime".
  */
-@Component
 public class OpeningTimeCommandHandlerImpl implements CommandHandler {
 
     /**
@@ -66,26 +64,27 @@ public class OpeningTimeCommandHandlerImpl implements CommandHandler {
         CandlestickInterval interval;
 
         try {
-            interval = CandlestickInterval.valueOf(time.toUpperCase());
+            interval = CandlestickInterval.valueOf(time);
         } catch (IllegalArgumentException e) {
             return """
                     Неверное значение времени. Пожалуйста, выберите один из доступных интервалов:
-                    - час -> 1h
-                    - 8 часов -> 8h
-                    - 12 часов -> 12h
-                    - день -> 1d
-                    - 3 дня -> 3d
-                    - неделя -> 1w
-                    - месяц -> 1M)""";
+                    - час -> HOURLY
+                    - 8 часов -> EIGHT_HOURLY
+                    - 12 часов -> TWELVE_HOURLY
+                    - день -> DAILY
+                    - 3 дня -> THREE_DAILY
+                    - неделя -> WEEKLY
+                    - месяц -> MONTHLY""";
         }
 
         List<Candlestick> candlesticks = binanceApiRestClient.getCandlestickBars(symbol, interval);
         if (candlesticks == null || candlesticks.isEmpty()) {
-            return "Не найдена цена открытия для данной валютной пары: " + symbol + " при интервале " +
+            return "Не найдено время открытия свечного периода для данной валютной пары: " + symbol + " при интервале " +
                     interval.getIntervalId() + ". " + "Перейдите на биржу Binance для уточнения названия валютной пары.";
 
         }
-        return BinanceTimeConverter.convertTimestampToString(candlesticks.get(0).getOpenTime());
+        return "Время открытия свечного периода для " + symbol + ": " +
+                BinanceTimeConverter.convertTimestampToString(candlesticks.get(0).getOpenTime());
     }
 
     /**
