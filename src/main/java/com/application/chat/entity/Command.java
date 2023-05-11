@@ -18,7 +18,6 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @RequiredArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @Table(name = Command.TABLE_NAME)
 @Label("Команда")
 public class Command extends AbstractEntity {

@@ -2,7 +2,6 @@ package com.application.chat.handler;
 
 import com.application.chat.entity.Bot;
 import com.application.chat.handler.impl.UnknownCommandHandlerImpl;
-import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -12,7 +11,6 @@ import java.util.Map;
  *
  * @author alexanderbibik
  */
-@Component
 public class CommandProcessor {
 
     /**

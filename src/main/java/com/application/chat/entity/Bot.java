@@ -18,7 +18,6 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @RequiredArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @Table(name = Bot.TABLE_NAME)
 @Label("Бот")
 public class Bot extends AbstractEntity {
