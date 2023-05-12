@@ -9,7 +9,7 @@ import retrofit2.http.Query;
 import java.util.List;
 
 /**
- * Интерфейс для маппинга URL-адресов и настройки безопасности конечных точек Binance REST API.
+ * Интерфейс для маппинга URL-адресов Binance REST API.
  *
  * @author alexanderbibik
  */
