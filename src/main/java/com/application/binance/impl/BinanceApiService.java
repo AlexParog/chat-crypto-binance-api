@@ -79,7 +79,7 @@ public interface BinanceApiService {
      * Получает статистику цен за последние 24 часа для указанного символа.
      *
      * @param symbol символ, для которого нужно получить статистику цен
-     * @return объект {@link Call}, представляющий асинхронный запрос на получение данных {@link TickerStatistics}
+     * @return объект {@link Call}, представляющий синхронный запрос на получение данных {@link TickerStatistics}
      */
     @GET("/api/v1/ticker/24hr")
     Call<TickerStatistics> get24HrPriceStatistics(@Query("symbol") String symbol);
@@ -87,7 +87,7 @@ public interface BinanceApiService {
     /**
      * Получает последние цену для определенного тикера.
      *
-     * @return объект {@link Call}, представляющий асинхронный запрос на получение списка данных {@link TickerPrice}
+     * @return объект {@link Call}, представляющий синхронный запрос на получение списка данных {@link TickerPrice}
      */
     @GET("/api/v1/ticker/price")
     Call<TickerPrice> getTickerPrice(@Query("symbol") String symbol);
@@ -95,7 +95,7 @@ public interface BinanceApiService {
     /**
      * Получает последние цены для всех валютных пар.
      *
-     * @return объект {@link Call}, представляющий асинхронный запрос на получение списка данных {@link TickerPrice}
+     * @return объект {@link Call}, представляющий синхронный запрос на получение списка данных {@link TickerPrice}
      */
     @GET("/api/v1/ticker/allPrices")
     Call<List<TickerPrice>> getLatestPrices();
