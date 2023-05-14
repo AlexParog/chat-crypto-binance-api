@@ -5,6 +5,11 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Утилитный класс для преобразования времени в Binance API.
+ *
+ * @author alexanderbibik
+ */
 public class BinanceTimeConverter {
     /**
      * Преобразует время в миллисекундах с Binance API в строковое значение.
