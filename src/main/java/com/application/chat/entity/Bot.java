@@ -34,21 +34,33 @@ public class Bot extends AbstractEntity {
         public static final String BOT_CN_BOT_NAME = "bot_name";
     }
 
+    /**
+     * Имя бота.
+     */
     @Label("Имя бота")
     @NonNull
     @NotBlank
     @Column(name = Bot.ColumnName.BOT_CN_BOT_NAME, nullable = false, length = 20)
     private String botName;
 
+    /**
+     * Команды чат-бота.
+     */
     @Label("Команды чат-бота")
     @NonNull
     @OneToMany(mappedBy = Command.PropertyName.PN_BOT_COMMAND, fetch = FetchType.LAZY)
     private List<Command> botCommands;
 
+    /**
+     * Чаты, в которых состоит бот.
+     */
     @Label("Чаты, в которых состоит бот")
     @OneToMany(mappedBy = Chat.PropertyName.PN_BOT_CHAT, fetch = FetchType.LAZY)
     private List<Chat> botChats;
 
+    /**
+     * Сообщения, принадлежащие боту.
+     */
     @Label("Сообщения, принадлежащие боту")
     @OneToMany(mappedBy = Message.PropertyName.PN_BOT_MESSAGE, fetch = FetchType.LAZY)
     private List<Message> botMessages;

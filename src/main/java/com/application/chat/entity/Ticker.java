@@ -38,19 +38,31 @@ public class Ticker extends AbstractEntity {
         public static final String TICKER_CN_NAME = "name";
     }
 
+    /**
+     * Название торговой пары.
+     */
     @Label("Название торговой пары")
     @Column(name = ColumnName.TICKER_CN_NAME)
     private String name;
 
+    /**
+     * Значение цен торговой пары.
+     */
     @Label("Значение цен торговой пары")
     @OneToMany(mappedBy = Price.PropertyName.PN_TICKER_PRICE, fetch = FetchType.LAZY)
     private List<Price> prices;
 
+    /**
+     * Дата создания сущности.
+     */
     @Label("Дата создания сущности")
     @CreatedDate
     @JsonIgnore
     private LocalDateTime createdAt;
 
+    /**
+     * Дата последней модификации сущности.
+     */
     @Label("Дата последней модификации сущности")
     @LastModifiedDate
     @JsonIgnore
