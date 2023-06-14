@@ -9,7 +9,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.flow.theme.lumo.LumoUtility.Margin;
 
-@PageTitle("About")
+@PageTitle("О программе")
 @Route(value = "about")
 public class AboutView extends VerticalLayout {
 

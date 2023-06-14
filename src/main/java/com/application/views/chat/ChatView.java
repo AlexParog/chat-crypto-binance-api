@@ -14,7 +14,7 @@ import com.vaadin.flow.router.RouteAlias;
 
 import java.util.UUID;
 
-@PageTitle("Crypto-Chat")
+@PageTitle("Крипто-чат")
 @Route(value = "crypto-chat", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
 public class ChatView extends VerticalLayout {
@@ -27,10 +27,11 @@ public class ChatView extends VerticalLayout {
         this.commandProcessor = commandProcessor;
 
         // Создание UserInfo для пользователя
-        UserInfo userInfo = new UserInfo(UUID.randomUUID().toString(), "User");
+        UserInfo user = new UserInfo(UUID.randomUUID().toString(), "Александр");
+        UserInfo bot = new UserInfo(UUID.randomUUID().toString(), "КРИПТОнит");
 
         // Инициализация CollaborationMessageList с темой "chat" и UserInfo пользователя
-        messageList = new CollaborationMessageList(userInfo, "chat");
+        messageList = new CollaborationMessageList(user, "chat");
         messageList.setSizeFull();
 
         // Инициализация CollaborationMessageInput с CollaborationMessageList
@@ -42,18 +43,15 @@ public class ChatView extends VerticalLayout {
         setSizeFull();
 
         // Создание MessageManager для прослушивания новых сообщений в чате
-        MessageManager messageManager = new MessageManager(this, userInfo, "chat");
+        MessageManager messageManager = new MessageManager(this, bot, "chat");
         messageManager.setMessageHandler(context -> {
             String message = context.getMessage().getText();
             // Обработка сообщения с использованием CommandProcessor
             String response = commandProcessor.handleMessage(message);
             // Добавление сообщений пользователя и бота в CollaborationMessageList
-            add(new MessageInput(event -> {
-                String text = event.getValue();
+            add(new MessageInput(event -> {;
                 messageManager.submit(response);
             }));
-            //messageList.addMessage(new CollaborationMessage(message, userInfo));
-            //messageList.addMessage(new CollaborationMessage(response, "Bot"));
         });
     }
 }
