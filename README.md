@@ -4,7 +4,7 @@
 
 ## Технологии: 
 - Java 17
-- Spring 3
+- Spring Boot 3
 - Vaadin 24
 - PostgreSQL
 - Flyway
